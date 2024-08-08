@@ -21,8 +21,13 @@
 
 import random
 
+#Setting up the basic Deck: 
 deck = [2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
+
+#Temporary placeholder - maybe give the player the option to choose the number of decks? 
 deckNumber = int(input("Please advise how many decks you want to play with: "))
+
+#Main Storage for the actual game itself
 cardPool = []
 
 for _ in range(deckNumber):
