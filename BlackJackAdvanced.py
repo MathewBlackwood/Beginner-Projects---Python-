@@ -21,23 +21,63 @@
 
 import random
 
-#Setting up the basic Deck: 
+friendHand = []
+playerHand = []
+dealerHand = []
+
+
+
 deck = [2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
-
-#Temporary placeholder - maybe give the player the option to choose the number of decks? 
 deckNumber = int(input("Please advise how many decks you want to play with: "))
-
-#Main Storage for the actual game itself
 cardPool = []
 
+#The below will take the input of deckNumber and fill up cardPool 
 for _ in range(deckNumber):
     if 4 <= deckNumber <= 7:
         cardPool.extend(deck)
-
 else: 
     print("We need a number between 4 and 7 Sir!")
 
+def shuffleCards(cardPool): 
+    random.shuffle(cardPool)
+
+
+#Setting up drawing a card and then appending it to the respective hand
+def dealCard(cardPool, hand): 
+    if cardPool:
+        card = cardPool.pop(0)  # Draws a card from the card pool
+        hand.append(card)      # Appends the drawn card to the player's hand
+    else:
+        print("No more cards left in the pool!")
+
+def returnAllCards(cardPool):
+    cardPool.extend(friendHand)
+    friendHand.clear()
+
+    cardPool.extend(playerHand) #Copies the cards back to the cardpool at the end 
+    playerHand.clear()          #Deletes the cards in the players hands 
+
+    cardPool.extend(dealerHand)
+    dealerHand.clear()
+
+
+
+shuffleCards(cardPool)
 print(cardPool)
 
-playerHand = []
-dealerHand = []
+#Note: Friend is dealt first - then player, then Dealer at the end - Need to build in a hide dealer's first card function - maybe another variable to store is as a *? - Could easily just have it * at the beggining 
+#then randomly pick a card - but that doesn't emulate a real world scenario 
+dealCard(cardPool, friendHand)
+dealCard(cardPool, playerHand)
+dealCard(cardPool, dealerHand)
+
+dealCard(cardPool, friendHand)
+dealCard(cardPool, playerHand)
+dealCard(cardPool, dealerHand)
+
+
+print(playerHand)
+print(dealerHand)
+print(friendHand)
+
+print(cardPool)
