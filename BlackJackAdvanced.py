@@ -19,3 +19,20 @@
   #bet as much as you possibly can 
 
 
+import random
+
+deck = [2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
+deckNumber = int(input("Please advise how many decks you want to play with: "))
+cardPool = []
+
+for _ in range(deckNumber):
+    if 4 <= deckNumber <= 7:
+        cardPool.extend(deck)
+
+else: 
+    print("We need a number between 4 and 7 Sir!")
+
+print(cardPool)
+
+playerHand = []
+dealerHand = []
