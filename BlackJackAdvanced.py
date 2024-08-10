@@ -28,27 +28,12 @@ dealerHand = []
 
 
 deck = [2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
-deckNumber = int(input("Please advise how many decks you want to play with: "))
+deckNumber = 0
 cardPool = []
 
-#The below will take the input of deckNumber and fill up cardPool 
-for _ in range(deckNumber):
-    if 4 <= deckNumber <= 7:
-        cardPool.extend(deck)
-else: 
-    print("We need a number between 4 and 7 Sir!")
-
+#Functions below - maybe add them to the dealer class? 
 def shuffleCards(cardPool): 
     random.shuffle(cardPool)
-
-
-#Setting up drawing a card and then appending it to the respective hand
-def dealCard(cardPool, hand): 
-    if cardPool:
-        card = cardPool.pop(0)  # Draws a card from the card pool
-        hand.append(card)      # Appends the drawn card to the player's hand
-    else:
-        print("No more cards left in the pool!")
 
 def returnAllCards(cardPool):
     cardPool.extend(friendHand)
@@ -60,10 +45,33 @@ def returnAllCards(cardPool):
     cardPool.extend(dealerHand)
     dealerHand.clear()
 
+#Setting up drawing a card and then appending it to the respective hand
+def dealCard(cardPool, hand): 
+    if cardPool:
+        card = cardPool.pop(0)  # Draws a card from the card pool
+        hand.append(card)      # Appends the drawn card to the player's hand
+    else:
+        print("No more cards left in the pool!")
 
 
-shuffleCards(cardPool)
+
+
+#Running the game itself: 
+
+#Step 1 - Deciding the number of decks to play with: 
+
+#The below will take the input of deckNumber and fill up cardPool and then Shuffle the cards using the shared function
+while not (4 <= deckNumber <= 7):
+    deckNumber = int(input("Please advise how many decks you want to play with (between 4 and 7): "))
+    if not (4 <= deckNumber <= 7):
+        print("We need a number between 4 and 7 Sir!")
+
+for _ in range(deckNumber):
+    cardPool.extend(deck)
+    shuffleCards(cardPool)
+
 print(cardPool)
+
 
 #Note: Friend is dealt first - then player, then Dealer at the end - Need to build in a hide dealer's first card function - maybe another variable to store is as a *? - Could easily just have it * at the beggining 
 #then randomly pick a card - but that doesn't emulate a real world scenario 
