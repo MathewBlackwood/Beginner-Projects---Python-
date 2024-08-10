@@ -22,7 +22,12 @@
 import random
 
 friendHand = []
+friendBet = 0
+
 playerHand = []
+playerBet = 0 
+playerBalance = 1000
+
 dealerHand = []
 
 
@@ -49,7 +54,7 @@ def returnAllCards(cardPool):
 def dealCard(cardPool, hand): 
     if cardPool:
         card = cardPool.pop(0)  # Draws a card from the card pool
-        hand.append(card)      # Appends the drawn card to the player's hand
+        hand.append(card)       # Appends the drawn card to the player's hand
     else:
         print("No more cards left in the pool!")
 
@@ -72,6 +77,18 @@ for _ in range(deckNumber):
 
 print(cardPool)
 
+while True:
+    playerBet = int(input("Please confirm the amount you wish to bet with, Sir: "))
+    
+    if playerBet > playerBalance:
+        print("Apologies sir, but you do not have enough funds to supplement your bet.")
+    elif playerBet <= 0:
+        print("Please enter a valid bet amount greater than 0.")
+    else:
+        print("Thank you Sir, We will now begin dealing cards.")
+        break  # Exit the loop if the bet is valid
+
+print(cardPool)
 
 #Note: Friend is dealt first - then player, then Dealer at the end - Need to build in a hide dealer's first card function - maybe another variable to store is as a *? - Could easily just have it * at the beggining 
 #then randomly pick a card - but that doesn't emulate a real world scenario 
