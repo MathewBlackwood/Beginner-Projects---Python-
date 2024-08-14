@@ -27,6 +27,7 @@ friendBet = 0
 playerHand = []
 playerBet = 0 
 playerBalance = 1000
+gameInPlay = False
 
 dealerHand = []
 
@@ -86,23 +87,27 @@ while True:
         print("Please enter a valid bet amount greater than 0.")
     else:
         print("Thank you Sir, We will now begin dealing cards.")
+        playerBalance = playerBalance - playerBet
+        print(f"Balance minus: {playerBet}, is {playerBalance}", )
+        gameInPlay = True
         break  # Exit the loop if the bet is valid
 
-print(cardPool)
+if gameInPlay == True: 
+    dealCard(cardPool, friendHand)
+    dealCard(cardPool, playerHand)
+    dealCard(cardPool, dealerHand)
 
-#Note: Friend is dealt first - then player, then Dealer at the end - Need to build in a hide dealer's first card function - maybe another variable to store is as a *? - Could easily just have it * at the beggining 
-#then randomly pick a card - but that doesn't emulate a real world scenario 
-dealCard(cardPool, friendHand)
-dealCard(cardPool, playerHand)
-dealCard(cardPool, dealerHand)
-
-dealCard(cardPool, friendHand)
-dealCard(cardPool, playerHand)
-dealCard(cardPool, dealerHand)
+    dealCard(cardPool, friendHand)
+    dealCard(cardPool, playerHand)
+    dealCard(cardPool, dealerHand)
 
 
-print(playerHand)
-print(dealerHand)
-print(friendHand)
+print(f"Player cards are:{playerHand}")
+print(f"Dealer cards are: *,{dealerHand[0]}",)
+print(f"Friends cards are:{friendHand}")
+
+input(print("Please advise your next action, Hit, Double, Stand?"))
+
+
 
 print(cardPool)
