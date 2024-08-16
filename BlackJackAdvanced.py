@@ -28,9 +28,9 @@ playerHand = []
 playerBet = 0 
 playerBalance = 1000
 gameInPlay = False
+betMade = False
 
 dealerHand = []
-
 
 
 deck = [2,3,4,5,6,7,8,9,10,"J","Q","K","A"]
@@ -59,8 +59,62 @@ def dealCard(cardPool, hand):
     else:
         print("No more cards left in the pool!")
 
+#Setting up the ability for python to calculate the players hand 
 
+def calculateHand(hand): 
+    value = 0 
+    aceCounter = 0 
 
+    for card in hand: 
+        if card in hand ["J", "Q", "K"]:
+                value += 10
+            
+
+def calculateHand(hand):
+    value = 0
+
+    for card in hand:
+        if card in ["J", "Q", "K"]:
+            value += 10
+        elif card == "A":
+            value += 11
+            ace_count += 1
+        else:
+            value += card
+    
+    while value > 21 and ace_count:
+        value -= 10
+        ace_count -= 1
+    
+    return value
+
+def checkForBlackJack(hand): 
+    if len(hand) == 2: 
+        if ("A" in hand) and any(card in hand for card in [10,"J","Q","K"]): 
+            return True
+        else: 
+            return False
+
+def calculateHand(hand):
+    value = 0
+    aceCounter = 0
+
+    for card in hand: 
+        if card in ["J","Q","K"]: 
+            value += 10 
+
+        elif card == ["A"]:
+            aceCounter += 1 
+            value = 11
+
+        else: 
+            value += card 
+
+    while value > 21 and aceCounter:
+        value -= 10
+        ace_count -= 1
+
+    return value
 
 #Running the game itself: 
 
@@ -78,7 +132,10 @@ for _ in range(deckNumber):
 
 print(cardPool)
 
-while True:
+#GAME 
+#Start with the option to create a bet and tie it to the game itself
+
+while not betMade:
     playerBet = int(input("Please confirm the amount you wish to bet with, Sir: "))
     
     if playerBet > playerBalance:
@@ -86,28 +143,38 @@ while True:
     elif playerBet <= 0:
         print("Please enter a valid bet amount greater than 0.")
     else:
+        #If the bet is Valid - The below will: 1. Update and print the balance, then deal the cards. 
         print("Thank you Sir, We will now begin dealing cards.")
         playerBalance = playerBalance - playerBet
         print(f"Balance minus: {playerBet}, is {playerBalance}", )
         gameInPlay = True
-        break  # Exit the loop if the bet is valid
+        betMade = True
+        break  # Exit the loop
 
-if gameInPlay == True: 
-    dealCard(cardPool, friendHand)
-    dealCard(cardPool, playerHand)
-    dealCard(cardPool, dealerHand)
+if betMade & gameInPlay: 
 
     dealCard(cardPool, friendHand)
     dealCard(cardPool, playerHand)
     dealCard(cardPool, dealerHand)
 
+    dealCard(cardPool, friendHand)
+    dealCard(cardPool, playerHand)
+    dealCard(cardPool, dealerHand)
 
-print(f"Player cards are:{playerHand}")
-print(f"Dealer cards are: *,{dealerHand[0]}",)
-print(f"Friends cards are:{friendHand}")
+    print(f"Player cards are:{playerHand}")
+    print(f"Dealer cards are: *,{dealerHand[0]}",)
+    print(f"Friends cards are:{friendHand}")
 
-input(print("Please advise your next action, Hit, Double, Stand?"))
+while gameInPlay: 
+    action = input(print("Please Advise: Hit, Double, Stand?"))
+
+    match action: 
+        case "Hit", "hit": 
+            dealCard(cardPool, playerHand)
+            print(playerHand)
+
+            if calculateHand(playerHand) > 21: 
+                print("Bust!")
+                gameInPlay = False
 
 
-
-print(cardPool)
