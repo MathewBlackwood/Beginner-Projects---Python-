@@ -250,7 +250,12 @@ while playerBalance > 0:
 
     print(f"Player balance is now {playerBalance}")
     returnAllCards(cardPool)
+        
     betMade = False
+    # Option to quit, ask the player if they want to play another round or quit
+    play_again = input("Would you like to play another round? (yes/no): ").lower()
+    if play_again != 'yes':
+        break
 
 
 #End game - create a clear playerBet and reroute to player balance based on weather they lost or won 
