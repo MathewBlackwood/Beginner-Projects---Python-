@@ -146,7 +146,7 @@ while not betMade:
         #If the bet is Valid - The below will: 1. Update and print the balance, then deal the cards. 
         print("Thank you Sir, We will now begin dealing cards.")
         playerBalance = playerBalance - playerBet
-        print(f"Balance minus: {playerBet}, is {playerBalance}", )
+        print(f"You have: {playerBet} on the table, and your remaining balance is {playerBalance}")
         gameInPlay = True
         betMade = True
         break  # Exit the loop
