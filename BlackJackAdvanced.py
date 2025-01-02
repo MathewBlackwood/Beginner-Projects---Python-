@@ -140,7 +140,7 @@ while playerBalance > 0:
 
         print(f"Player cards are:{playerHand}, player total:", calculateHand(playerHand))
         print(f"Dealer cards are: *,{dealerHand[0]}",)
-        print(f"Friends cards are:{friendHand} friend total: ", calculateHand(playerHand))
+        print(f"Friends cards are:{friendHand} friend total: ", calculateHand(friendHand))
 
     #Checking for blackjack before player is given options 
         if checkForBlackJack(playerHand): 
