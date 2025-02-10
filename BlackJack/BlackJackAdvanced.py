@@ -178,10 +178,10 @@ while playerBalance > 0:
         match action: 
             case "hit": 
                 dealCard(cardPool, playerHand)
-                print(f"Your cards: {playerHand}")
+                print(f"Your cards are: {playerHand}, the total value is {calculateHand(playerHand)}")
 
                 if calculateHand(playerHand) > 21: 
-                    print("Bust! You exceeded 21.")
+                    print(f"Bust! You exceeded 21. your total was {calculateHand(playerHand)}")
                     betMade = 0
                     gameInPlay = False
 
@@ -192,10 +192,10 @@ while playerBalance > 0:
 
                     print(f"Your total bet is now {playerBet}, and your remaining balance is {playerBalance}")
                     dealCard(cardPool, playerHand)
-                    print(f"Your cards: {playerHand}")
+                    print(f"Your cards: {playerHand}, the total value is {calculateHand(playerHand)}")
                     
                     if calculateHand(playerHand) > 21: 
-                        print("Bust! You exceeded 21.")
+                        print(f"Bust! You exceeded 21. It was {calculateHand(playerHand)}")
                         betMade = 0
                         gameInPlay = False
                     else:
@@ -257,6 +257,11 @@ while playerBalance > 0:
     if play_again != 'yes':
         break
 
+#NOTE - The cardpool seems to be continually stacking, i may need to:
+# a) Create a temporary card pool inbetween 
+# b) Set it up so it matches an actual blackjack game 
+
+# may be worth restarting since i haven't worked on this in a while 
 
 #End game - create a clear playerBet and reroute to player balance based on weather they lost or won 
 
