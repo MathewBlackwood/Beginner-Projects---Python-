@@ -16,7 +16,7 @@
   #there should be a more mathematically sound option for each response variable based on which card the dealer is showing
   #e.g. if he's showing 16 and you're showing 15, but the count is at a certain point where 6 of each card between 6-9 has already been presented 
   #Statistically you're better off standing because the next card is a guaruanteed to be a 10 meaning a dealer bust - which means you should 
-  #bet as much as you possibly can 
+  #bet as much as you possibly can in the game
 
 
 import random
